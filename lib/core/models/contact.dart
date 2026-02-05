@@ -2,8 +2,8 @@ import 'package:hive/hive.dart';
 
 part 'contact.g.dart';
 
-@HiveType(typeId: 3)
-class Contact {
+@HiveType(typeId: 46)
+class CoreContact {
   @HiveField(0)
   final String id;
 
@@ -31,7 +31,7 @@ class Contact {
   @HiveField(8)
   final DateTime updatedAt;
 
-  Contact({
+  CoreContact({
     required this.id,
     required this.type,
     required this.name,
@@ -43,8 +43,8 @@ class Contact {
     required this.updatedAt,
   });
 
-  factory Contact.fromJson(Map<String, dynamic> json) {
-    return Contact(
+  factory CoreContact.fromJson(Map<String, dynamic> json) {
+    return CoreContact(
       id: json['id'] ?? '',
       type: json['type'] ?? 'architect',
       name: json['name'] ?? '',
@@ -71,7 +71,7 @@ class Contact {
     };
   }
 
-  Contact copyWith({
+  CoreContact copyWith({
     String? id,
     String? type,
     String? name,
@@ -82,7 +82,7 @@ class Contact {
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
-    return Contact(
+    return CoreContact(
       id: id ?? this.id,
       type: type ?? this.type,
       name: name ?? this.name,
@@ -95,8 +95,8 @@ class Contact {
     );
   }
 
-  factory Contact.empty() {
-    return Contact(
+  factory CoreContact.empty() {
+    return CoreContact(
       id: '',
       type: 'architect',
       name: '',

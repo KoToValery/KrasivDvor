@@ -284,74 +284,69 @@ class _ClientManagementScreenState extends State<ClientManagementScreen> {
     final formKey = GlobalKey<FormState>();
     final fullNameController = TextEditingController();
     final locationController = TextEditingController();
-    final addressController = TextEditingController();
-    final phoneController = TextEditingController();
-    final emailController = TextEditingController();
 
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Създаване на нов клиент'),
-        content: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextFormField(
-                  controller: fullNameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Име на клиент *',
-                    prefixIcon: Icon(Icons.person),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Моля въведете име';
-                    }
-                    return null;
-                  },
+        content: Form(
+          key: formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFormField(
+                controller: fullNameController,
+                decoration: const InputDecoration(
+                  labelText: 'Име на градината *',
+                  prefixIcon: Icon(Icons.park),
+                  hintText: 'например: Градина "Рози"',
                 ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  controller: locationController,
-                  decoration: const InputDecoration(
-                    labelText: 'Местоположение на градината *',
-                    prefixIcon: Icon(Icons.location_on),
-                    hintText: 'например: София, Бояна',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Моля въведете местоположение';
-                    }
-                    return null;
-                  },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Моля въведете име на градината';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: locationController,
+                decoration: const InputDecoration(
+                  labelText: 'Местоположение на градината *',
+                  prefixIcon: Icon(Icons.location_on),
+                  hintText: 'например: София, Бояна',
                 ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  controller: addressController,
-                  decoration: const InputDecoration(
-                    labelText: 'Адрес (незадължително)',
-                    prefixIcon: Icon(Icons.home),
-                  ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Моля въведете местоположение';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade50,
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  controller: phoneController,
-                  decoration: const InputDecoration(
-                    labelText: 'Телефон (незадължително)',
-                    prefixIcon: Icon(Icons.phone),
-                  ),
+                child: Row(
+                  children: [
+                    Icon(Icons.info_outline, color: Colors.blue.shade700),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        'Уникален номер ще бъде генериран автоматично',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.blue.shade700,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                    labelText: 'Email (незадължително)',
-                    prefixIcon: Icon(Icons.email),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         actions: [
@@ -365,9 +360,6 @@ class _ClientManagementScreenState extends State<ClientManagementScreen> {
                 _createClient(
                   fullNameController.text,
                   locationController.text,
-                  addressController.text,
-                  phoneController.text,
-                  emailController.text,
                 );
                 Navigator.of(context).pop();
               }
@@ -576,18 +568,35 @@ class _ClientManagementScreenState extends State<ClientManagementScreen> {
   void _createClient(
     String fullName,
     String location,
-    String address,
-    String phone,
-    String email,
-  ) {
+  ) async {
     final adminProvider = context.read<AdminProvider>();
-    adminProvider.createClient(
-      fullName: fullName,
-      location: location,
-      address: address,
-      phone: phone,
-      email: email,
-    );
+    try {
+      await adminProvider.createClient(
+        fullName: fullName,
+        location: location,
+      );
+      
+      if (!mounted) return;
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Клиентът е създаден успешно'),
+          backgroundColor: Colors.green,
+        ),
+      );
+      
+      // Reload clients to show the new one
+      await adminProvider.loadClients();
+    } catch (e) {
+      if (!mounted) return;
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Грешка при създаване: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 
   void _updateClient(
@@ -597,15 +606,38 @@ class _ClientManagementScreenState extends State<ClientManagementScreen> {
     String address,
     String phone,
     String email,
-  ) {
+  ) async {
     final adminProvider = context.read<AdminProvider>();
-    adminProvider.updateClient(client.id, {
-      'fullName': fullName,
-      'location': location,
-      'address': address.isNotEmpty ? address : null,
-      'phone': phone.isNotEmpty ? phone : null,
-      'email': email.isNotEmpty ? email : null,
-    });
+    try {
+      await adminProvider.updateClient(client.id, {
+        'fullName': fullName,
+        'location': location,
+        'address': address.isNotEmpty ? address : null,
+        'phone': phone.isNotEmpty ? phone : null,
+        'email': email.isNotEmpty ? email : null,
+      });
+      
+      if (!mounted) return;
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Клиентът е обновен успешно'),
+          backgroundColor: Colors.green,
+        ),
+      );
+      
+      // Reload clients to show the updated data
+      await adminProvider.loadClients();
+    } catch (e) {
+      if (!mounted) return;
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Грешка при обновяване: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 
   void _deleteClient(Client client) {

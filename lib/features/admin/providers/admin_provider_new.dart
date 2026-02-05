@@ -154,6 +154,9 @@ class AdminProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
+      // Generate unique client number (visible only to admin)
+      final clientNumber = 'CL${DateTime.now().millisecondsSinceEpoch.toString().substring(5)}';
+      
       final clientData = {
         'fullName': fullName,
         'location': location,
@@ -161,6 +164,7 @@ class AdminProvider extends ChangeNotifier {
         'phone': phone,
         'email': email,
         'username': _generateUsername(fullName),
+        'clientNumber': clientNumber, // Unique number for admin
         'createdAt': DateTime.now().toIso8601String(),
         'zones': [],
         'contacts': [],
@@ -221,22 +225,27 @@ class AdminProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      // Try to load from Hive first if not forced
+      debugPrint('DEBUG: loadPlants called, forceRefresh: $forceRefresh');
+      
+      // If not forced refresh, try to load from Hive first
       if (!forceRefresh && Hive.isBoxOpen('catalog_plants')) {
         final box = Hive.box<Plant>('catalog_plants');
         if (box.isNotEmpty) {
           _plants = box.values.toList();
+          debugPrint('DEBUG: Loaded ${_plants.length} plants from Hive cache');
           _isLoading = false;
           notifyListeners();
-          // We could return here, but maybe we want to fetch in background?
-          // For now, return to show data immediately.
           return;
         }
       }
 
-      // If forced or empty, fetch from API
+      // Fetch from API (forced or cache is empty)
+      debugPrint('DEBUG: Fetching plants from API...');
       final plantsData = await _adminService.getAllPlants();
+      debugPrint('DEBUG: Received ${plantsData.length} plants from API');
+      
       _plants = plantsData.map((data) => Plant.fromJson(data)).toList();
+      debugPrint('DEBUG: Parsed ${_plants.length} plants');
 
       // Save to Hive
       if (Hive.isBoxOpen('catalog_plants')) {
@@ -245,11 +254,13 @@ class AdminProvider extends ChangeNotifier {
         for (var plant in _plants) {
           await box.put(plant.id, plant);
         }
+        debugPrint('DEBUG: Saved ${_plants.length} plants to Hive');
       }
 
       _isLoading = false;
       notifyListeners();
     } catch (e) {
+      debugPrint('DEBUG: Error loading plants: $e');
       _error = e.toString();
       _isLoading = false;
       notifyListeners();
@@ -301,25 +312,18 @@ class AdminProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
+      debugPrint('DEBUG: Adding plant to catalog: ${plantData['bulgarianName']}');
       await _adminService.addPlantToCatalog(plantData);
 
-      // The service might not return the created plant with ID,
-      // but if we generated ID in service or locally, we need it.
-      // Assuming plantData has ID or we generate one for local
+      debugPrint('DEBUG: Plant added, now force refreshing plants list');
+      // Force refresh to get the new plant from server/storage
+      await loadPlants(forceRefresh: true);
 
-      // Reload plants to include the new one from server
-      // Or manually add to local list and Hive
-
-      // Let's reload for consistency with backend if possible,
-      // but for offline support we should add manually.
-
-      // If plantData doesn't have ID, we can't save to Hive properly as ID key.
-      // We should probably rely on reloadPlants() which now saves to Hive.
-      await loadPlants();
-
+      debugPrint('DEBUG: Plants loaded, count: ${_plants.length}');
       _isLoading = false;
       notifyListeners();
     } catch (e) {
+      debugPrint('DEBUG: Error adding plant: $e');
       _error = e.toString();
       _isLoading = false;
       notifyListeners();
@@ -335,7 +339,7 @@ class AdminProvider extends ChangeNotifier {
 
     try {
       await _adminService.updatePlantInCatalog(plantId, plantData);
-      await loadPlants();
+      await loadPlants(forceRefresh: true);
       _isLoading = false;
       notifyListeners();
     } catch (e) {
@@ -353,7 +357,7 @@ class AdminProvider extends ChangeNotifier {
 
     try {
       await _adminService.deletePlantFromCatalog(plantId);
-      await loadPlants();
+      await loadPlants(forceRefresh: true);
       _isLoading = false;
       notifyListeners();
     } catch (e) {
@@ -378,8 +382,16 @@ class AdminProvider extends ChangeNotifier {
         final file = result.files.single;
         String content;
         if (kIsWeb) {
+          // On web, use bytes instead of path
+          if (file.bytes == null) {
+            throw Exception('Файлът не може да бъде прочетен на web платформа');
+          }
           content = utf8.decode(file.bytes!);
         } else {
+          // On mobile/desktop, use path
+          if (file.path == null) {
+            throw Exception('Файлът не може да бъде прочетен');
+          }
           content = await File(file.path!).readAsString();
         }
 
@@ -388,7 +400,7 @@ class AdminProvider extends ChangeNotifier {
             jsonList.cast<Map<String, dynamic>>();
 
         await _adminService.bulkImportPlants(plants);
-        await loadPlants();
+        await loadPlants(forceRefresh: true);
 
         _isLoading = false;
         notifyListeners();

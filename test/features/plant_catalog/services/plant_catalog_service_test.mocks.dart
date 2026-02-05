@@ -11,10 +11,11 @@ import 'package:landscape_plant_catalog/core/services/storage_service.dart'
     as _i6;
 import 'package:landscape_plant_catalog/features/plant_catalog/services/compatibility_engine.dart'
     as _i4;
-import 'package:landscape_plant_catalog/models/care_reminder.dart' as _i7;
-import 'package:landscape_plant_catalog/models/plant.dart' as _i9;
+import 'package:landscape_plant_catalog/models/care_reminder.dart' as _i8;
+import 'package:landscape_plant_catalog/models/client_garden.dart' as _i7;
+import 'package:landscape_plant_catalog/models/plant.dart' as _i10;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i8;
+import 'package:mockito/src/dummies.dart' as _i9;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -278,22 +279,22 @@ class MockStorageService extends _i1.Mock implements _i6.StorageService {
       ) as _i3.Box<dynamic>);
 
   @override
-  _i3.Box<dynamic> get gardensBox => (super.noSuchMethod(
+  _i3.Box<_i7.ClientGarden> get gardensBox => (super.noSuchMethod(
         Invocation.getter(#gardensBox),
-        returnValue: _FakeBox_1<dynamic>(
+        returnValue: _FakeBox_1<_i7.ClientGarden>(
           this,
           Invocation.getter(#gardensBox),
         ),
-      ) as _i3.Box<dynamic>);
+      ) as _i3.Box<_i7.ClientGarden>);
 
   @override
-  _i3.Box<_i7.CareReminder> get remindersBox => (super.noSuchMethod(
+  _i3.Box<_i8.CareReminder> get remindersBox => (super.noSuchMethod(
         Invocation.getter(#remindersBox),
-        returnValue: _FakeBox_1<_i7.CareReminder>(
+        returnValue: _FakeBox_1<_i8.CareReminder>(
           this,
           Invocation.getter(#remindersBox),
         ),
-      ) as _i3.Box<_i7.CareReminder>);
+      ) as _i3.Box<_i8.CareReminder>);
 
   @override
   _i5.Future<void> init() => (super.noSuchMethod(
@@ -431,14 +432,14 @@ class MockStorageService extends _i1.Mock implements _i6.StorageService {
   @override
   _i5.Future<void> storeGarden(
     String? id,
-    Map<String, dynamic>? gardenData,
+    _i7.ClientGarden? garden,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
           #storeGarden,
           [
             id,
-            gardenData,
+            garden,
           ],
         ),
         returnValue: _i5.Future<void>.value(),
@@ -446,11 +447,11 @@ class MockStorageService extends _i1.Mock implements _i6.StorageService {
       ) as _i5.Future<void>);
 
   @override
-  Map<String, dynamic>? getGarden(String? id) =>
+  _i7.ClientGarden? getGarden(String? id) =>
       (super.noSuchMethod(Invocation.method(
         #getGarden,
         [id],
-      )) as Map<String, dynamic>?);
+      )) as _i7.ClientGarden?);
 
   @override
   _i5.Future<void> storeReminder(
@@ -534,7 +535,7 @@ class MockStorageService extends _i1.Mock implements _i6.StorageService {
             folder,
           ],
         ),
-        returnValue: _i5.Future<String>.value(_i8.dummyValue<String>(
+        returnValue: _i5.Future<String>.value(_i9.dummyValue<String>(
           this,
           Invocation.method(
             #uploadFile,
@@ -558,8 +559,8 @@ class MockCompatibilityEngine extends _i1.Mock
 
   @override
   _i4.CompatibilityResult analyzeCompatibility(
-    _i9.Plant? plant1,
-    _i9.Plant? plant2,
+    _i10.Plant? plant1,
+    _i10.Plant? plant2,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -583,8 +584,8 @@ class MockCompatibilityEngine extends _i1.Mock
 
   @override
   List<_i4.CompatibilityResult> findCompatiblePlants(
-    _i9.Plant? targetPlant,
-    List<_i9.Plant>? candidatePlants, {
+    _i10.Plant? targetPlant,
+    List<_i10.Plant>? candidatePlants, {
     double? minCompatibilityScore = 0.6,
     int? maxResults,
   }) =>
@@ -604,9 +605,9 @@ class MockCompatibilityEngine extends _i1.Mock
       ) as List<_i4.CompatibilityResult>);
 
   @override
-  List<_i9.Plant> findGroupCompatiblePlants(
-    List<_i9.Plant>? existingPlants,
-    List<_i9.Plant>? candidatePlants, {
+  List<_i10.Plant> findGroupCompatiblePlants(
+    List<_i10.Plant>? existingPlants,
+    List<_i10.Plant>? candidatePlants, {
     double? minAverageScore = 0.7,
   }) =>
       (super.noSuchMethod(
@@ -618,12 +619,12 @@ class MockCompatibilityEngine extends _i1.Mock
           ],
           {#minAverageScore: minAverageScore},
         ),
-        returnValue: <_i9.Plant>[],
-      ) as List<_i9.Plant>);
+        returnValue: <_i10.Plant>[],
+      ) as List<_i10.Plant>);
 
   @override
   _i4.PlantCombinationAnalysis analyzePlantCombination(
-          List<_i9.Plant>? plants) =>
+          List<_i10.Plant>? plants) =>
       (super.noSuchMethod(
         Invocation.method(
           #analyzePlantCombination,

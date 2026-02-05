@@ -15,8 +15,11 @@ class GardenService {
   /// Get client garden by client ID
   Future<ClientGarden> getClientGarden(String clientId) async {
     try {
-      // Try to get from cache first
-      final box = await Hive.openBox<ClientGarden>(_gardenBoxName);
+      // Ensure box is open
+      if (!Hive.isBoxOpen(_gardenBoxName)) {
+        await Hive.openBox<ClientGarden>(_gardenBoxName);
+      }
+      final box = Hive.box<ClientGarden>(_gardenBoxName);
       
       // Fetch from API
       final response = await _apiService.get('/gardens/$clientId');
@@ -28,7 +31,10 @@ class GardenService {
       return garden;
     } catch (e) {
       // If API fails, try to return cached data
-      final box = await Hive.openBox<ClientGarden>(_gardenBoxName);
+      if (!Hive.isBoxOpen(_gardenBoxName)) {
+        await Hive.openBox<ClientGarden>(_gardenBoxName);
+      }
+      final box = Hive.box<ClientGarden>(_gardenBoxName);
       final cachedGarden = box.get(clientId);
       
       if (cachedGarden != null) {
@@ -72,7 +78,10 @@ class GardenService {
           .toList();
       
       // Update cache
-      final box = await Hive.openBox<PlantInstance>(_plantInstanceBoxName);
+      if (!Hive.isBoxOpen(_plantInstanceBoxName)) {
+        await Hive.openBox<PlantInstance>(_plantInstanceBoxName);
+      }
+      final box = Hive.box<PlantInstance>(_plantInstanceBoxName);
       for (final plant in plants) {
         await box.put(plant.id, plant);
       }
@@ -80,7 +89,10 @@ class GardenService {
       return plants;
     } catch (e) {
       // Try to return cached data
-      final box = await Hive.openBox<PlantInstance>(_plantInstanceBoxName);
+      if (!Hive.isBoxOpen(_plantInstanceBoxName)) {
+        await Hive.openBox<PlantInstance>(_plantInstanceBoxName);
+      }
+      final box = Hive.box<PlantInstance>(_plantInstanceBoxName);
       final cachedPlants = box.values.toList();
       
       if (cachedPlants.isNotEmpty) {
@@ -214,8 +226,11 @@ class GardenService {
   /// Get plant instance by ID
   Future<PlantInstance> getPlantInstance(String plantInstanceId) async {
     try {
-      // Try cache first
-      final box = await Hive.openBox<PlantInstance>(_plantInstanceBoxName);
+      // Ensure box is open
+      if (!Hive.isBoxOpen(_plantInstanceBoxName)) {
+        await Hive.openBox<PlantInstance>(_plantInstanceBoxName);
+      }
+      final box = Hive.box<PlantInstance>(_plantInstanceBoxName);
       
       // Fetch from API
       final response = await _apiService.get('/plant-instances/$plantInstanceId');
@@ -227,7 +242,10 @@ class GardenService {
       return plantInstance;
     } catch (e) {
       // Try cached data
-      final box = await Hive.openBox<PlantInstance>(_plantInstanceBoxName);
+      if (!Hive.isBoxOpen(_plantInstanceBoxName)) {
+        await Hive.openBox<PlantInstance>(_plantInstanceBoxName);
+      }
+      final box = Hive.box<PlantInstance>(_plantInstanceBoxName);
       final cached = box.get(plantInstanceId);
       
       if (cached != null) {
@@ -281,7 +299,10 @@ class GardenService {
 
   /// Cache plant instance locally
   Future<void> _cachePlantInstance(PlantInstance plant) async {
-    final box = await Hive.openBox<PlantInstance>(_plantInstanceBoxName);
+    if (!Hive.isBoxOpen(_plantInstanceBoxName)) {
+      await Hive.openBox<PlantInstance>(_plantInstanceBoxName);
+    }
+    final box = Hive.box<PlantInstance>(_plantInstanceBoxName);
     await box.put(plant.id, plant);
   }
 
@@ -453,8 +474,15 @@ class GardenService {
 
   /// Clear all cached garden data
   Future<void> clearCache() async {
-    final gardenBox = await Hive.openBox<ClientGarden>(_gardenBoxName);
-    final plantBox = await Hive.openBox<PlantInstance>(_plantInstanceBoxName);
+    if (!Hive.isBoxOpen(_gardenBoxName)) {
+      await Hive.openBox<ClientGarden>(_gardenBoxName);
+    }
+    if (!Hive.isBoxOpen(_plantInstanceBoxName)) {
+      await Hive.openBox<PlantInstance>(_plantInstanceBoxName);
+    }
+    
+    final gardenBox = Hive.box<ClientGarden>(_gardenBoxName);
+    final plantBox = Hive.box<PlantInstance>(_plantInstanceBoxName);
     
     await gardenBox.clear();
     await plantBox.clear();

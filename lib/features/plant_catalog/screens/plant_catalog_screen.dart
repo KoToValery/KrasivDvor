@@ -51,10 +51,11 @@ class _PlantCatalogScreenState extends State<PlantCatalogScreen>
       appBar: AppBar(
         title: const Text('Каталог на растения'),
         actions: [
+          // Small admin button in top right
           IconButton(
-            icon: const Icon(Icons.admin_panel_settings),
+            icon: const Icon(Icons.admin_panel_settings, size: 20),
             onPressed: () => context.push('/admin/login'),
-            tooltip: 'Административен панел',
+            tooltip: 'Админ панел',
           ),
           IconButton(
             icon: const Icon(Icons.palette),

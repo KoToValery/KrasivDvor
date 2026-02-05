@@ -19,6 +19,7 @@ class Plant extends HiveObject {
   final PlantCategory category;
 
   @HiveField(4)
+  @JsonKey(defaultValue: [])
   final List<String> imageUrls;
 
   @HiveField(5)
@@ -31,6 +32,7 @@ class Plant extends HiveObject {
   final PlantSpecifications specifications;
 
   @HiveField(8)
+  @JsonKey(defaultValue: [])
   final List<String> compatiblePlantIds;
 
   @HiveField(9)
@@ -177,7 +179,7 @@ class CareRequirements extends HiveObject {
 }
 
 @JsonSerializable()
-@HiveType(typeId: 3)
+@HiveType(typeId: 48)
 class PlantSpecifications extends HiveObject {
   @HiveField(0)
   final int maxHeightCm;
@@ -186,6 +188,7 @@ class PlantSpecifications extends HiveObject {
   final int maxWidthCm;
 
   @HiveField(2)
+  @JsonKey(defaultValue: [])
   final List<Season> bloomSeason;
 
   @HiveField(3)
@@ -194,7 +197,7 @@ class PlantSpecifications extends HiveObject {
   PlantSpecifications({
     required this.maxHeightCm,
     required this.maxWidthCm,
-    required this.bloomSeason,
+    this.bloomSeason = const [],
     required this.growthRate,
   });
 
@@ -232,12 +235,13 @@ class WateringSchedule extends HiveObject {
   final String instructions;
 
   @HiveField(2)
+  @JsonKey(defaultValue: false)
   final bool weatherDependent;
 
   WateringSchedule({
     required this.frequencyDays,
     required this.instructions,
-    required this.weatherDependent,
+    this.weatherDependent = false,
   });
 
   factory WateringSchedule.fromJson(Map<String, dynamic> json) =>
@@ -315,9 +319,10 @@ class SeasonalCare extends HiveObject {
 }
 
 @JsonSerializable()
-@HiveType(typeId: 9)
+@HiveType(typeId: 47)
 class WinterizingSchedule extends HiveObject {
   @HiveField(0)
+  @JsonKey(defaultValue: false)
   final bool needed;
 
   @HiveField(1)
@@ -327,7 +332,7 @@ class WinterizingSchedule extends HiveObject {
   final String instructions;
 
   WinterizingSchedule({
-    required this.needed,
+    this.needed = false,
     required this.startMonth,
     required this.instructions,
   });

@@ -144,7 +144,8 @@ class _PlantManagementScreenState extends State<PlantManagementScreen> {
       builder: (context) => const AddPlantDialog(),
     ).then((result) {
       if (result == true) {
-        context.read<AdminProvider>().loadPlants();
+        // Force reload plants after adding
+        context.read<AdminProvider>().loadPlants(forceRefresh: true);
       }
     });
   }
@@ -155,7 +156,8 @@ class _PlantManagementScreenState extends State<PlantManagementScreen> {
       builder: (context) => AddPlantDialog(plant: plant),
     ).then((result) {
       if (result == true) {
-        context.read<AdminProvider>().loadPlants();
+        // Force reload plants after editing
+        context.read<AdminProvider>().loadPlants(forceRefresh: true);
       }
     });
   }
@@ -193,7 +195,7 @@ class _PlantManagementScreenState extends State<PlantManagementScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Растението е изтрито')),
       );
-      await context.read<AdminProvider>().loadPlants();
+      await context.read<AdminProvider>().loadPlants(forceRefresh: true);
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(

@@ -17,6 +17,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   final _adminUsernameController = TextEditingController();
   bool _isClientLoading = false;
   bool _isAdminLoading = false;
+  bool _isCheckingActiveClient = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkForActiveClient();
+  }
 
   @override
   void dispose() {
@@ -25,8 +32,74 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     super.dispose();
   }
 
+  /// Check if there's an active client, if not redirect to admin panel
+  Future<void> _checkForActiveClient() async {
+    await Future.delayed(const Duration(milliseconds: 300)); // Small delay for UI
+    
+    final clientAuthService = ServiceLocator.clientAuthService;
+    
+    // Check if there's an active client authenticated
+    if (clientAuthService.isAuthenticated && clientAuthService.currentClientId != null) {
+      // There's an active client, navigate to their garden
+      if (mounted) {
+        context.go('/garden?clientId=${clientAuthService.currentClientId}');
+      }
+      return;
+    }
+    
+    // No active client found, redirect to admin login
+    if (mounted) {
+      setState(() {
+        _isCheckingActiveClient = false;
+      });
+      // Navigate to admin login after a short delay
+      Future.delayed(const Duration(milliseconds: 100), () {
+        if (mounted) {
+          context.go('/admin/login');
+        }
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Show loading indicator while checking for active client
+    if (_isCheckingActiveClient) {
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.local_florist,
+                size: 100,
+                color: Color(0xFF2E7D32),
+              ),
+              const SizedBox(height: 24),
+              Text(
+                'Красив Двор',
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFF2E7D32),
+                    ),
+              ),
+              const SizedBox(height: 32),
+              const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF2E7D32)),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Зареждане...',
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Colors.grey[600],
+                    ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -248,7 +321,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         _isClientLoading = false;
       });
 
-      context.go('/client/dashboard');
+      // Navigate directly to the active client's garden
+      final clientId = ServiceLocator.clientAuthService.currentClientId;
+      if (clientId != null) {
+        context.go('/garden?clientId=$clientId');
+      } else {
+        context.go('/client/dashboard');
+      }
     } catch (e) {
       if (mounted) {
         setState(() {

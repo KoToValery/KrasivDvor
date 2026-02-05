@@ -3,34 +3,53 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/care_reminder.dart';
 import '../../models/plant.dart';
 import '../../models/client.dart';
+import '../../models/client_garden.dart';
 import '../../../core/models/notification.dart';
 
 class StorageService {
   late SharedPreferences _prefs;
   late Box _plantsBox;
-  late Box _gardensBox;
+  late Box<ClientGarden> _gardensBox;
   late Box _remindersBox;
 
   Future<void> init() async {
     // Initialize SharedPreferences
     _prefs = await SharedPreferences.getInstance();
 
-    // Initialize Hive boxes
-    _plantsBox = await Hive.openBox('plants');
-    _gardensBox = await Hive.openBox('gardens');
-    _remindersBox = await Hive.openBox<CareReminder>('reminders');
+    // Initialize Hive boxes - check if already open first
+    _plantsBox = Hive.isBoxOpen('plants') 
+        ? Hive.box('plants') 
+        : await Hive.openBox('plants');
+    
+    _gardensBox = Hive.isBoxOpen('gardens') 
+        ? Hive.box<ClientGarden>('gardens') 
+        : await Hive.openBox<ClientGarden>('gardens');
+    
+    _remindersBox = Hive.isBoxOpen('reminders') 
+        ? Hive.box<CareReminder>('reminders') 
+        : await Hive.openBox<CareReminder>('reminders');
 
-    // Initialize new feature boxes
-    await Hive.openBox<Plant>('catalog_plants');
-    await Hive.openBox<Client>('clients');
-    await Hive.openBox<Zone>('zones');
-    await Hive.openBox<Contact>('contacts');
-    await Hive.openBox<AppNotification>('notifications');
+    // Initialize new feature boxes - check if already open
+    if (!Hive.isBoxOpen('catalog_plants')) {
+      await Hive.openBox<Plant>('catalog_plants');
+    }
+    if (!Hive.isBoxOpen('clients')) {
+      await Hive.openBox<Client>('clients');
+    }
+    if (!Hive.isBoxOpen('zones')) {
+      await Hive.openBox<Zone>('zones');
+    }
+    if (!Hive.isBoxOpen('contacts')) {
+      await Hive.openBox<Contact>('contacts');
+    }
+    if (!Hive.isBoxOpen('notifications')) {
+      await Hive.openBox<AppNotification>('notifications');
+    }
   }
 
   // Getters for boxes
   Box get plantsBox => _plantsBox;
-  Box get gardensBox => _gardensBox;
+  Box<ClientGarden> get gardensBox => _gardensBox;
   Box<CareReminder> get remindersBox => _remindersBox as Box<CareReminder>;
 
   // SharedPreferences methods
@@ -87,13 +106,12 @@ class StorageService {
     return plants;
   }
 
-  Future<void> storeGarden(String id, Map<String, dynamic> gardenData) async {
-    await _gardensBox.put(id, gardenData);
+  Future<void> storeGarden(String id, ClientGarden garden) async {
+    await _gardensBox.put(id, garden);
   }
 
-  Map<String, dynamic>? getGarden(String id) {
-    final data = _gardensBox.get(id);
-    return data != null ? Map<String, dynamic>.from(data) : null;
+  ClientGarden? getGarden(String id) {
+    return _gardensBox.get(id);
   }
 
   Future<void> storeReminder(

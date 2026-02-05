@@ -1,5 +1,8 @@
+import 'package:flutter/foundation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '../../../core/services/api_service.dart';
 import '../../../core/services/storage_service.dart';
+import '../../../models/plant.dart';
 
 class AdminService {
   final ApiService _apiService;
@@ -36,7 +39,24 @@ class AdminService {
   }
 
   Future<void> addPlantToCatalog(Map<String, dynamic> plant) async {
-    await _apiService.post('/admin/plants', plant);
+    final response = await _apiService.post('/admin/plants', plant);
+    
+    // If the response contains the created plant with ID, save it to Hive
+    if (response['data'] != null) {
+      try {
+        final plantData = response['data'] as Map<String, dynamic>;
+        final createdPlant = Plant.fromJson(plantData);
+        
+        // Save to Hive immediately
+        if (Hive.isBoxOpen('catalog_plants')) {
+          final box = Hive.box<Plant>('catalog_plants');
+          await box.put(createdPlant.id, createdPlant);
+        }
+      } catch (e) {
+        // If parsing fails, just continue - the plant will be loaded on next refresh
+        debugPrint('Could not save plant to Hive immediately: $e');
+      }
+    }
   }
 
   Future<void> updatePlantInCatalog(
