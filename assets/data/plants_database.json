@@ -1,0 +1,662 @@
+[
+  {
+    "id": "plant_001",
+    "latinName": "Lavandula angustifolia",
+    "bulgarianName": "Лавандула",
+    "category": "flowers",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1587041402077-aa44a98806e6?w=800",
+      "https://images.unsplash.com/photo-1595514913214-7478d5b0b6a4?w=800",
+      "https://images.unsplash.com/photo-1571492122154-21d6a9a9904b?w=800",
+      "https://images.unsplash.com/photo-1611909023032-7fc2d0a5f3f3?w=800"
+    ],
+    "characteristics": {
+      "description": "Вечнозелен полухраст с ароматни сивозелени листа и виолетови цветове. Известна с успокояващите си свойства и аромат.",
+      "lightRequirement": "fullSun",
+      "waterRequirement": "low",
+      "preferredSoil": "sand",
+      "hardinessZone": 6
+    },
+    "careRequirements": {
+      "watering": {
+        "frequencyDays": 7,
+        "instructions": "Умерено поливане, позволете на почвата да изсъхне между поливанията",
+        "weatherDependent": true
+      },
+      "fertilizing": {
+        "frequencyDays": 90,
+        "instructions": "Леко торене с балансирано тор през пролетта",
+        "seasons": ["spring"]
+      },
+      "pruning": {
+        "seasons": ["spring", "autumn"],
+        "instructions": "Подрязване след цъфтеж за поддържане на формата"
+      },
+      "seasonalCare": [
+        {
+          "season": "spring",
+          "instructions": "Подрязване и леко торене"
+        },
+        {
+          "season": "summer",
+          "instructions": "Редовно берене на цветове за насърчаване на цъфтежа"
+        },
+        {
+          "season": "autumn",
+          "instructions": "Подготовка за зимата, леко подрязване"
+        },
+        {
+          "season": "winter",
+          "instructions": "Защита от силни студове с мулч"
+        }
+      ]
+    },
+    "specifications": {
+      "maxHeightCm": 60,
+      "maxWidthCm": 90,
+      "bloomSeason": ["spring", "summer"],
+      "growthRate": "moderate"
+    },
+    "compatiblePlantIds": ["plant_002", "plant_003", "plant_007"],
+    "toxicity": {
+      "level": "none",
+      "warning": null
+    },
+    "priceCategory": "standard",
+    "qrCode": "lavandula_angustifolia_001"
+  },
+  {
+    "id": "plant_002",
+    "latinName": "Rosmarinus officinalis",
+    "bulgarianName": "Розмарин",
+    "category": "shrubs",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1594312919269-80521c7f46e2?w=800",
+      "https://images.unsplash.com/photo-1610977614242-558f6a491f8b?w=800",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800",
+      "https://images.unsplash.com/photo-1602524818125-4a8f5a5b5b5b?w=800"
+    ],
+    "characteristics": {
+      "description": "Вечнозелен ароматен храст с игловидни листа и сини цветове. Популярна подправка и медоносно растение.",
+      "lightRequirement": "fullSun",
+      "waterRequirement": "low",
+      "preferredSoil": "sand",
+      "hardinessZone": 7
+    },
+    "careRequirements": {
+      "watering": {
+        "frequencyDays": 10,
+        "instructions": "Рядко поливане, понася суша добре",
+        "weatherDependent": true
+      },
+      "fertilizing": {
+        "frequencyDays": 120,
+        "instructions": "Минимално торене с органична тор",
+        "seasons": ["spring"]
+      },
+      "pruning": {
+        "seasons": ["spring"],
+        "instructions": "Подрязване за поддържане на формата и насърчаване на растежа"
+      },
+      "seasonalCare": [
+        {
+          "season": "spring",
+          "instructions": "Подрязване и леко торене"
+        },
+        {
+          "season": "summer",
+          "instructions": "Берене на листа за употреба"
+        },
+        {
+          "season": "autumn",
+          "instructions": "Подготовка за зимата"
+        },
+        {
+          "season": "winter",
+          "instructions": "Защита в студени райони"
+        }
+      ]
+    },
+    "specifications": {
+      "maxHeightCm": 150,
+      "maxWidthCm": 120,
+      "bloomSeason": ["spring", "summer"],
+      "growthRate": "moderate"
+    },
+    "compatiblePlantIds": ["plant_001", "plant_003", "plant_007"],
+    "toxicity": {
+      "level": "none",
+      "warning": null
+    },
+    "priceCategory": "standard",
+    "qrCode": "rosmarinus_officinalis_002"
+  },
+  {
+    "id": "plant_003",
+    "latinName": "Salvia officinalis",
+    "bulgarianName": "Градински чай",
+    "category": "flowers",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1615581454989-361f95c41842?w=800",
+      "https://images.unsplash.com/photo-1594312919269-80521c7f46e2?w=800",
+      "https://images.unsplash.com/photo-1602524818125-4a8f5a5b5b5b?w=800",
+      "https://images.unsplash.com/photo-1571492122154-21d6a9a9904b?w=800"
+    ],
+    "characteristics": {
+      "description": "Вечнозелен многогодишен храст с сивозелени листа и виолетови цветове. Използва се като подправка и лечебно растение.",
+      "lightRequirement": "fullSun",
+      "waterRequirement": "low",
+      "preferredSoil": "loam",
+      "hardinessZone": 5
+    },
+    "careRequirements": {
+      "watering": {
+        "frequencyDays": 7,
+        "instructions": "Умерено поливане, добре дренирана почва",
+        "weatherDependent": true
+      },
+      "fertilizing": {
+        "frequencyDays": 90,
+        "instructions": "Леко торене през пролетта",
+        "seasons": ["spring"]
+      },
+      "pruning": {
+        "seasons": ["spring", "autumn"],
+        "instructions": "Подрязване за поддържане на компактна форма"
+      },
+      "seasonalCare": [
+        {
+          "season": "spring",
+          "instructions": "Подрязване и торене"
+        },
+        {
+          "season": "summer",
+          "instructions": "Берене на листа"
+        },
+        {
+          "season": "autumn",
+          "instructions": "Подготовка за зимата"
+        },
+        {
+          "season": "winter",
+          "instructions": "Почивка, минимални грижи"
+        }
+      ]
+    },
+    "specifications": {
+      "maxHeightCm": 60,
+      "maxWidthCm": 60,
+      "bloomSeason": ["spring", "summer"],
+      "growthRate": "moderate"
+    },
+    "compatiblePlantIds": ["plant_001", "plant_002", "plant_007"],
+    "toxicity": {
+      "level": "none",
+      "warning": null
+    },
+    "priceCategory": "budget",
+    "qrCode": "salvia_officinalis_003"
+  },
+  {
+    "id": "plant_004",
+    "latinName": "Quercus robur",
+    "bulgarianName": "Обикновен дъб",
+    "category": "trees",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800",
+      "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800",
+      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800",
+      "https://images.unsplash.com/photo-1503242464786-199ffb1dd8d9?w=800"
+    ],
+    "characteristics": {
+      "description": "Вечнозелено широколистно дърво, достигащо големи размери. Символ на сила и дълголетие, създава сянка и убежище за диви животни.",
+      "lightRequirement": "fullSun",
+      "waterRequirement": "moderate",
+      "preferredSoil": "loam",
+      "hardinessZone": 4
+    },
+    "careRequirements": {
+      "watering": {
+        "frequencyDays": 14,
+        "instructions": "Дълбоко поливане през сухи периоди, особено за млади дървета",
+        "weatherDependent": true
+      },
+      "fertilizing": {
+        "frequencyDays": 365,
+        "instructions": "Торене през пролетта с бавноразграждаща се тор",
+        "seasons": ["spring"]
+      },
+      "pruning": {
+        "seasons": ["winter"],
+        "instructions": "Професионално подрязване през зимата за поддържане на структурата"
+      },
+      "seasonalCare": [
+        {
+          "season": "spring",
+          "instructions": "Наблюдение за нов растеж и торене"
+        },
+        {
+          "season": "summer",
+          "instructions": "Поливане през сухи периоди"
+        },
+        {
+          "season": "autumn",
+          "instructions": "Събиране на жълъди, подготовка за зимата"
+        },
+        {
+          "season": "winter",
+          "instructions": "Подрязване и инспекция за болести"
+        }
+      ]
+    },
+    "specifications": {
+      "maxHeightCm": 2500,
+      "maxWidthCm": 1500,
+      "bloomSeason": ["spring"],
+      "growthRate": "slow"
+    },
+    "compatiblePlantIds": ["plant_005", "plant_008"],
+    "toxicity": {
+      "level": "none",
+      "warning": null
+    },
+    "priceCategory": "premium",
+    "qrCode": "quercus_robur_004"
+  },
+  {
+    "id": "plant_005",
+    "latinName": "Acer platanoides",
+    "bulgarianName": "Клен",
+    "category": "trees",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800",
+      "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800",
+      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800",
+      "https://images.unsplash.com/photo-1503242464786-199ffb1dd8d9?w=800"
+    ],
+    "characteristics": {
+      "description": "Широколистно дърво с красиви есенни оцветявания. Бързорастящо и подходящо за градски условия.",
+      "lightRequirement": "fullSun",
+      "waterRequirement": "moderate",
+      "preferredSoil": "loam",
+      "hardinessZone": 3
+    },
+    "careRequirements": {
+      "watering": {
+        "frequencyDays": 10,
+        "instructions": "Редовно поливане през първите години, после издръжливо на суша",
+        "weatherDependent": true
+      },
+      "fertilizing": {
+        "frequencyDays": 180,
+        "instructions": "Торене през пролетта за насърчаване на растежа",
+        "seasons": ["spring"]
+      },
+      "pruning": {
+        "seasons": ["winter"],
+        "instructions": "Формиращо подрязване през зимата"
+      },
+      "seasonalCare": [
+        {
+          "season": "spring",
+          "instructions": "Наблюдение за нов растеж"
+        },
+        {
+          "season": "summer",
+          "instructions": "Поливане при нужда"
+        },
+        {
+          "season": "autumn",
+          "instructions": "Наслаждавайте се на есенните цветове"
+        },
+        {
+          "season": "winter",
+          "instructions": "Подрязване и инспекция"
+        }
+      ]
+    },
+    "specifications": {
+      "maxHeightCm": 1500,
+      "maxWidthCm": 1200,
+      "bloomSeason": ["spring"],
+      "growthRate": "fast"
+    },
+    "compatiblePlantIds": ["plant_004", "plant_008"],
+    "toxicity": {
+      "level": "none",
+      "warning": null
+    },
+    "priceCategory": "standard",
+    "qrCode": "acer_platanoides_005"
+  },
+  {
+    "id": "plant_006",
+    "latinName": "Rosa gallica",
+    "bulgarianName": "Френска роза",
+    "category": "shrubs",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=800",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800",
+      "https://images.unsplash.com/photo-1518709261575-e099b0a7ca43?w=800",
+      "https://images.unsplash.com/photo-1559409025-7504e0aa5e31?w=800"
+    ],
+    "characteristics": {
+      "description": "Класическа роза с ароматни цветове в различни нюанси. Идеална за розови градини и като акцент в композиции.",
+      "lightRequirement": "fullSun",
+      "waterRequirement": "moderate",
+      "preferredSoil": "loam",
+      "hardinessZone": 5
+    },
+    "careRequirements": {
+      "watering": {
+        "frequencyDays": 3,
+        "instructions": "Редовно поливане в основата, избягвайте мокрене на листата",
+        "weatherDependent": true
+      },
+      "fertilizing": {
+        "frequencyDays": 60,
+        "instructions": "Торене специализирана тор за рози през активния сезон",
+        "seasons": ["spring", "summer"]
+      },
+      "pruning": {
+        "seasons": ["spring"],
+        "instructions": "Подрязване през пролетта за форма и здраве"
+      },
+      "seasonalCare": [
+        {
+          "season": "spring",
+          "instructions": "Подрязване, торене и наблюдение за болести"
+        },
+        {
+          "season": "summer",
+          "instructions": "Редовно поливане и мъртвене на изсъхнали цветове"
+        },
+        {
+          "season": "autumn",
+          "instructions": "Подготовка за зимата, мулчиране"
+        },
+        {
+          "season": "winter",
+          "instructions": "Защита от студове в студени райони"
+        }
+      ]
+    },
+    "specifications": {
+      "maxHeightCm": 120,
+      "maxWidthCm": 100,
+      "bloomSeason": ["spring", "summer", "autumn"],
+      "growthRate": "moderate"
+    },
+    "compatiblePlantIds": ["plant_001", "plant_007", "plant_009"],
+    "toxicity": {
+      "level": "none",
+      "warning": null
+    },
+    "priceCategory": "premium",
+    "qrCode": "rosa_gallica_006"
+  },
+  {
+    "id": "plant_007",
+    "latinName": "Thymus vulgaris",
+    "bulgarianName": "Обикновен мащерка",
+    "category": "flowers",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1611909023032-7fc2d0a5f3f3?w=800",
+      "https://images.unsplash.com/photo-1571492122154-21d6a9a9904b?w=800",
+      "https://images.unsplash.com/photo-1587041402077-aa44a98806e6?w=800",
+      "https://images.unsplash.com/photo-1595514913214-7478d5b0b6a4?w=800"
+    ],
+    "characteristics": {
+      "description": "Ароматна тревиста многогодишна билка с малки лилави цветове. Отлична за кулинарни цели и привлича полезни насекоми.",
+      "lightRequirement": "fullSun",
+      "waterRequirement": "low",
+      "preferredSoil": "sand",
+      "hardinessZone": 5
+    },
+    "careRequirements": {
+      "watering": {
+        "frequencyDays": 10,
+        "instructions": "Рядко поливане, понася суша добре",
+        "weatherDependent": true
+      },
+      "fertilizing": {
+        "frequencyDays": 120,
+        "instructions": "Минимално торене с органична тор",
+        "seasons": ["spring"]
+      },
+      "pruning": {
+        "seasons": ["spring"],
+        "instructions": "Подрязване за поддържане на компактна форма"
+      },
+      "seasonalCare": [
+        {
+          "season": "spring",
+          "instructions": "Подрязване и леко торене"
+        },
+        {
+          "season": "summer",
+          "instructions": "Берене на листа за употреба"
+        },
+        {
+          "season": "autumn",
+          "instructions": "Подготовка за зимата"
+        },
+        {
+          "season": "winter",
+          "instructions": "Почивка, минимални грижи"
+        }
+      ]
+    },
+    "specifications": {
+      "maxHeightCm": 30,
+      "maxWidthCm": 40,
+      "bloomSeason": ["spring", "summer"],
+      "growthRate": "slow"
+    },
+    "compatiblePlantIds": ["plant_001", "plant_002", "plant_003"],
+    "toxicity": {
+      "level": "none",
+      "warning": null
+    },
+    "priceCategory": "budget",
+    "qrCode": "thymus_vulgaris_007"
+  },
+  {
+    "id": "plant_008",
+    "latinName": "Hosta spp.",
+    "bulgarianName": "Хоста",
+    "category": "flowers",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1594312919269-80521c7f46e2?w=800",
+      "https://images.unsplash.com/photo-1610977614242-558f6a491f8b?w=800",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800",
+      "https://images.unsplash.com/photo-1602524818125-4a8f5a5b5b5b?w=800"
+    ],
+    "characteristics": {
+      "description": "Многогодишна сянколюбива билка с декоративни листа в различни нюанси. Идеална за сенчести места в градината.",
+      "lightRequirement": "fullShade",
+      "waterRequirement": "moderate",
+      "preferredSoil": "loam",
+      "hardinessZone": 3
+    },
+    "careRequirements": {
+      "watering": {
+        "frequencyDays": 5,
+        "instructions": "Редовно поливане, особено в горещо време",
+        "weatherDependent": true
+      },
+      "fertilizing": {
+        "frequencyDays": 90,
+        "instructions": "Торене през пролетта с органична тор",
+        "seasons": ["spring"]
+      },
+      "pruning": {
+        "seasons": ["autumn"],
+        "instructions": "Премахване на изсъхнали листа"
+      },
+      "seasonalCare": [
+        {
+          "season": "spring",
+          "instructions": "Разделяне на туфи ако е необходимо"
+        },
+        {
+          "season": "summer",
+          "instructions": "Поливане и наблюдение за охлюви"
+        },
+        {
+          "season": "autumn",
+          "instructions": "Подготовка за зимата"
+        },
+        {
+          "season": "winter",
+          "instructions": "Почивка, защита от силни студове"
+        }
+      ]
+    },
+    "specifications": {
+      "maxHeightCm": 60,
+      "maxWidthCm": 100,
+      "bloomSeason": ["summer"],
+      "growthRate": "moderate"
+    },
+    "compatiblePlantIds": ["plant_004", "plant_005"],
+    "toxicity": {
+      "level": "mild",
+      "warning": "Може да дразни кожата при директен контакт"
+    },
+    "priceCategory": "standard",
+    "qrCode": "hosta_spp_008"
+  },
+  {
+    "id": "plant_009",
+    "latinName": "Sedum spurium",
+    "bulgarianName": "Сукулентен камшик",
+    "category": "flowers",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1459156212016-c812468e2115?w=800",
+      "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=800",
+      "https://images.unsplash.com/photo-1455577380025-4321f1e1dca7?w=800",
+      "https://images.unsplash.com/photo-1463154545680-d59320fd685d?w=800"
+    ],
+    "characteristics": {
+      "description": "Издръжливо сукулентно растение с пълзящ ствол и розови цветове. Перфектно за сухи места и каменисти градини.",
+      "lightRequirement": "fullSun",
+      "waterRequirement": "low",
+      "preferredSoil": "sand",
+      "hardinessZone": 4
+    },
+    "careRequirements": {
+      "watering": {
+        "frequencyDays": 21,
+        "instructions": "Много рядко поливане, понася суша отлично",
+        "weatherDependent": true
+      },
+      "fertilizing": {
+        "frequencyDays": 180,
+        "instructions": "Минимално торене през пролетта",
+        "seasons": ["spring"]
+      },
+      "pruning": {
+        "seasons": ["spring"],
+        "instructions": "Премахване на изсъхнали части"
+      },
+      "seasonalCare": [
+        {
+          "season": "spring",
+          "instructions": "Леко подрязване и наблюдение"
+        },
+        {
+          "season": "summer",
+          "instructions": "Минимални грижи"
+        },
+        {
+          "season": "autumn",
+          "instructions": "Подготовка за зимата"
+        },
+        {
+          "season": "winter",
+          "instructions": "Почивка, издръжливо на студ"
+        }
+      ]
+    },
+    "specifications": {
+      "maxHeightCm": 15,
+      "maxWidthCm": 60,
+      "bloomSeason": ["summer", "autumn"],
+      "growthRate": "fast"
+    },
+    "compatiblePlantIds": ["plant_001", "plant_002", "plant_006"],
+    "toxicity": {
+      "level": "none",
+      "warning": null
+    },
+    "priceCategory": "budget",
+    "qrCode": "sedum_spurium_009"
+  },
+  {
+    "id": "plant_010",
+    "latinName": "Narcissus pseudonarcissus",
+    "bulgarianName": "Нарцис",
+    "category": "flowers",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800",
+      "https://images.unsplash.com/photo-1508788397430-55907b3480ab?w=800",
+      "https://images.unsplash.com/photo-1487700160041-babef9c5cb55?w=800",
+      "https://images.unsplash.com/photo-1518709261575-5c2e78637d8f?w=800"
+    ],
+    "characteristics": {
+      "description": "Пролетна луковична билка с характерни жълти цветове. Символ на пролетта и възраждането, лесна за отглеждане.",
+      "lightRequirement": "partialSun",
+      "waterRequirement": "moderate",
+      "preferredSoil": "loam",
+      "hardinessZone": 4
+    },
+    "careRequirements": {
+      "watering": {
+        "frequencyDays": 7,
+        "instructions": "Умерено поливане през активния сезон",
+        "weatherDependent": true
+      },
+      "fertilizing": {
+        "frequencyDays": 180,
+        "instructions": "Торене след цъфтеж за следващата година",
+        "seasons": ["spring"]
+      },
+      "pruning": {
+        "seasons": ["spring"],
+        "instructions": "Премахване на изсъхнали цветове, но оставете листата"
+      },
+      "seasonalCare": [
+        {
+          "season": "spring",
+          "instructions": "Цъфтеж и торене"
+        },
+        {
+          "season": "summer",
+          "instructions": "Оставете листата да изсъхнат естествено"
+        },
+        {
+          "season": "autumn",
+          "instructions": "Подготовка за зимата"
+        },
+        {
+          "season": "winter",
+          "instructions": "Почивка под земята"
+        }
+      ]
+    },
+    "specifications": {
+      "maxHeightCm": 45,
+      "maxWidthCm": 15,
+      "bloomSeason": ["spring"],
+      "growthRate": "moderate"
+    },
+    "compatiblePlantIds": ["plant_001", "plant_006", "plant_008"],
+    "toxicity": {
+      "level": "mild",
+      "warning": "Луковиците могат да причинят стомашно неразположение при консумация"
+    },
+    "priceCategory": "budget",
+    "qrCode": "narcissus_pseudonarcissus_010"
+  }
+]
