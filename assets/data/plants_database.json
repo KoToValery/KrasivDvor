@@ -49,7 +49,12 @@
           "season": "winter",
           "instructions": "Защита от силни студове с мулч"
         }
-      ]
+      ],
+      "winterizing": {
+        "needed": true,
+        "startMonth": 10,
+        "instructions": "Защита от силни студове с мулч"
+      }
     },
     "specifications": {
       "maxHeightCm": 60,
@@ -115,7 +120,12 @@
           "season": "winter",
           "instructions": "Защита в студени райони"
         }
-      ]
+      ],
+      "winterizing": {
+        "needed": true,
+        "startMonth": 10,
+        "instructions": "Защита в студени райони"
+      }
     },
     "specifications": {
       "maxHeightCm": 150,
@@ -181,7 +191,12 @@
           "season": "winter",
           "instructions": "Почивка, минимални грижи"
         }
-      ]
+      ],
+      "winterizing": {
+        "needed": false,
+        "startMonth": 10,
+        "instructions": "Почивка, минимални грижи"
+      }
     },
     "specifications": {
       "maxHeightCm": 60,
@@ -247,7 +262,12 @@
           "season": "winter",
           "instructions": "Подрязване и инспекция за болести"
         }
-      ]
+      ],
+      "winterizing": {
+        "needed": true,
+        "startMonth": 10,
+        "instructions": "Подрязване и инспекция за болести"
+      }
     },
     "specifications": {
       "maxHeightCm": 2500,
@@ -313,7 +333,12 @@
           "season": "winter",
           "instructions": "Подрязване и инспекция"
         }
-      ]
+      ],
+      "winterizing": {
+        "needed": true,
+        "startMonth": 10,
+        "instructions": "Подрязване и инспекция"
+      }
     },
     "specifications": {
       "maxHeightCm": 1500,
@@ -379,7 +404,12 @@
           "season": "winter",
           "instructions": "Защита от студове в студени райони"
         }
-      ]
+      ],
+      "winterizing": {
+        "needed": true,
+        "startMonth": 10,
+        "instructions": "Защита от студове в студени райони"
+      }
     },
     "specifications": {
       "maxHeightCm": 120,
@@ -445,7 +475,12 @@
           "season": "winter",
           "instructions": "Почивка, минимални грижи"
         }
-      ]
+      ],
+      "winterizing": {
+        "needed": false,
+        "startMonth": 10,
+        "instructions": "Почивка, минимални грижи"
+      }
     },
     "specifications": {
       "maxHeightCm": 30,
@@ -511,7 +546,12 @@
           "season": "winter",
           "instructions": "Почивка, защита от силни студове"
         }
-      ]
+      ],
+      "winterizing": {
+        "needed": true,
+        "startMonth": 10,
+        "instructions": "Защита от силни студове"
+      }
     },
     "specifications": {
       "maxHeightCm": 60,
@@ -577,7 +617,12 @@
           "season": "winter",
           "instructions": "Почивка, издръжливо на студ"
         }
-      ]
+      ],
+      "winterizing": {
+        "needed": false,
+        "startMonth": 10,
+        "instructions": "Почивка, издръжливо на студ"
+      }
     },
     "specifications": {
       "maxHeightCm": 15,
@@ -643,7 +688,12 @@
           "season": "winter",
           "instructions": "Почивка под земята"
         }
-      ]
+      ],
+      "winterizing": {
+        "needed": false,
+        "startMonth": 10,
+        "instructions": "Почивка под земята"
+      }
     },
     "specifications": {
       "maxHeightCm": 45,

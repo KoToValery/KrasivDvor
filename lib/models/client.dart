@@ -63,6 +63,9 @@ class Client extends HiveObject {
   @HiveField(18)
   final List<String> zoneIds;
 
+  @HiveField(19)
+  final bool isActive;
+
   Client({
     required this.id,
     required this.username,
@@ -83,6 +86,7 @@ class Client extends HiveObject {
     this.fertilizingReminderDays = 14,
     this.pruningReminderDays = 30,
     required this.zoneIds,
+    this.isActive = true,
   });
 
   factory Client.fromJson(Map<String, dynamic> json) => _$ClientFromJson(json);
@@ -108,6 +112,7 @@ class Client extends HiveObject {
     int? fertilizingReminderDays,
     int? pruningReminderDays,
     List<String>? zoneIds,
+    bool? isActive,
   }) {
     return Client(
       id: id ?? this.id,
@@ -133,6 +138,7 @@ class Client extends HiveObject {
           fertilizingReminderDays ?? this.fertilizingReminderDays,
       pruningReminderDays: pruningReminderDays ?? this.pruningReminderDays,
       zoneIds: zoneIds ?? this.zoneIds,
+      isActive: isActive ?? this.isActive,
     );
   }
 }
